@@ -6,7 +6,7 @@
     <artifactId>app-harvester-admin</artifactId>
     <groupId>org.folio</groupId>
     <description>Harvest job management app for FOLIO Sunflower</description>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <properties>
         <project.name>app-harvester-admin</project.name>
@@ -99,6 +99,6 @@
     <url>https://github.com/indexdata/${project.name}</url>
     <connection>scm:git:git://github.com:indexdata/${project.name}.git</connection>
     <developerConnection>scm:git:git@github.com:indexdata/${project.name}.git</developerConnection>
-    <tag>v1.0.0</tag>
+    <tag>HEAD</tag>
   </scm>
 </project>
