@@ -12,13 +12,13 @@
   "modules": [
     {
       "name": "mod-harvester-admin",
-      "version": "latest"
+      "version": "1.4.1"
     }
   ],
   "uiModules": [
     {
       "name": "indexdata_harvester-admin",
-      "version": "latest"
+      "version": "3.0.0"
     }
   ]
 }
