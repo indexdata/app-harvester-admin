@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+    <name>${project.name}</name>
+    <artifactId>app-harvester-admin</artifactId>
+    <groupId>org.folio</groupId>
+    <description>Harvest job management app for FOLIO Sunflower</description>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <properties>
+        <project.name>app-harvester-admin</project.name>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <folio-application-generator.version>1.1.0</folio-application-generator.version>
+        <maven-release-plugin.version>3.1.1</maven-release-plugin.version>
+        <templatePath>${basedir}/${project.name}.template.json</templatePath>
+    </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.folio</groupId>
+        <artifactId>folio-application-generator</artifactId>
+        <version>${folio-application-generator.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generateFromJson</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <templatePath>${templatePath}</templatePath>
+          <moduleRegistries>
+            <registry>
+              <type>okapi</type>
+              <url>https://registry.folio-dev.indexdata.com</url>
+            </registry>
+            <registry>
+              <type>okapi</type>
+              <url>https://folio-registry.dev.folio.org</url>
+            </registry>
+          </moduleRegistries>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>${maven-release-plugin.version}</version>
+        <configuration>
+          <preparationGoals>clean verify</preparationGoals>
+          <tagNameFormat>v@{project.version}</tagNameFormat>
+          <pushChanges>false</pushChanges>
+          <localCheckout>true</localCheckout>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>folio-nexus</id>
+      <name>FOLIO Maven repository</name>
+      <url>https://repository.folio.org/repository/maven-folio</url>
+    </repository>
+
+    <repository>
+      <id>index-data-nexus</id>
+      <name>FOLIO Maven repository</name>
+      <url>https://maven.indexdata.com</url>
+    </repository>
+  </repositories>
+
+  <distributionManagement>
+    <repository>
+      <id>folio-nexus</id>
+      <name>FOLIO Release Repository</name>
+      <url>https://repository.folio.org/repository/maven-releases/</url>
+      <uniqueVersion>false</uniqueVersion>
+      <layout>default</layout>
+    </repository>
+    <snapshotRepository>
+      <id>folio-nexus</id>
+      <name>FOLIO Snapshot Repository</name>
+      <uniqueVersion>true</uniqueVersion>
+      <url>https://repository.folio.org/repository/maven-snapshots/</url>
+      <layout>default</layout>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>folio-nexus</id>
+      <name>FOLIO Maven repository</name>
+      <url>https://repository.folio.org/repository/maven-folio</url>
+    </pluginRepository>
+  </pluginRepositories>
+  <scm>
+    <url>https://github.com/indexdata/${project.name}</url>
+    <connection>scm:git:git://github.com:indexdata/${project.name}.git</connection>
+    <developerConnection>scm:git:git@github.com:indexdata/${project.name}.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+</project>

@@ -1,0 +1,24 @@
+{
+  "name": "${project.name}",
+  "version": "${project.version}",
+  "description": "${project.description}",
+  "platform": "complete",
+  "dependencies": [
+    {
+      "name": "app-platform-minimal",
+      "version": "^2.0.0"
+    }
+  ],
+  "modules": [
+    {
+      "name": "mod-harvester-admin",
+      "version": "latest"
+    }
+  ],
+  "uiModules": [
+    {
+      "name": "indexdata_harvester-admin",
+      "version": "latest"
+    }
+  ]
+}
